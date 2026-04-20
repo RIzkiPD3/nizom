@@ -27,7 +27,7 @@ export default function SpotlightSection() {
     <Box
       sx={{
         py: { xs: 8, md: 12 },
-        px: 4,
+        // Background gradien tetap dipertahankan
         background: 'linear-gradient(160deg, #0D0D2B 0%, #0d1428 100%)',
         position: 'relative',
         overflow: 'hidden',
@@ -45,7 +45,9 @@ export default function SpotlightSection() {
         },
       }}
     >
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, px: 0 }}>
+      {/* px: '80px' memastikan titik "left: 80px" dari Figma tercapai */}
+      <Container maxWidth={false} sx={{ position: 'relative', zIndex: 1, px: { xs: 3, md: '80px' }, maxWidth: '1440px' }}>
+        
         {/* Header row */}
         <Box
           sx={{
@@ -143,26 +145,34 @@ export default function SpotlightSection() {
           </Box>
         </Box>
 
-        {/* Projects Grid (CSS Grid) */}
+        {/* ⚠️ FIX: Mengganti Grid dengan Flexbox 1 Baris agar selaras dengan dimensi baru */}
         <Box
           sx={{
-            display: 'grid',
-            gridTemplateColumns: {
-              xs: '1fr',           // Mobile: 1 column
-              sm: 'repeat(2, 1fr)', // Tablet: 2 columns
-              md: 'repeat(4, 1fr)', // Desktop: 4 columns
-            },
-            gap: '24px',
-            alignItems: 'stretch',
-            justifyContent: 'center',
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '19.7px', // Sesuai spek Anda
+            justifyContent: 'flex-start', // Dimulai pas di 80px dari tepi kiri container
+            width: '100%',
+            overflowX: { xs: 'auto', xl: 'visible' }, // Scroll horizontal otomatis di layar kecil
+            pb: 2,
+            '&::-webkit-scrollbar': { display: 'none' }, // Sembunyikan scrollbar bawaan browser
+            msOverflowStyle: 'none',
+            scrollbarWidth: 'none',
           }}
         >
           {projects.map((proj, index) => (
-            <ProjectCard
-              key={proj.id}
-              image={proj.image}
-              notchPosition={index % 2 === 0 ? 'top-right' : 'bottom-right'}
-            />
+            <Box 
+              key={proj.id} 
+              sx={{ 
+                flexShrink: 0, // Kunci agar kartu tidak mengecil
+                width: '305.3px' // Set ukuran kontainer sesuai desain
+              }}
+            >
+              <ProjectCard
+                image={proj.image}
+                notchPosition={index % 2 === 0 ? 'top-right' : 'bottom-right'}
+              />
+            </Box>
           ))}
         </Box>
       </Container>

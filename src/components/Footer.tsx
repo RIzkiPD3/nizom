@@ -1,172 +1,138 @@
 'use client';
 
 import React from 'react';
-import { Box, Container, Grid, IconButton, Typography, Divider } from '@mui/material';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import { Box, Typography, Grid, IconButton, Divider } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import XIcon from '@mui/icons-material/X';
 
-const links = {
-    Company: ['About Us', 'Careers', 'Our Team', 'Blog', 'Press'],
-    Services: ['App Development', 'Quality Assurance', 'UI/UX Design', 'DevOps', 'Consulting'],
-    Product: ['Portfolio', 'Case Studies', 'Pricing', 'Documentation', 'Support'],
+const footerLinks = {
+    COMPANY: ['About', 'Services', 'Portfolio', 'Blog', 'Contact Us'],
+    SERVICES: ['Web Development', 'App Development', 'QA & Testing', 'Technical Support'],
+    PRODUCT: ['Point of Sale', 'Mini ERP'],
 };
 
 export default function Footer() {
+    const primaryNavy = '#0F163D'; 
+
     return (
-        <Box
-            component="footer"
-            sx={{
-                background: 'linear-gradient(160deg, #0D0D2B 0%, #111135 100%)',
-                color: '#fff',
-                pt: { xs: 7, md: 9 },
-                pb: 4,
+        <Box 
+            sx={{ 
+                width: '100%', 
+                display: 'flex', 
+                justifyContent: 'center', 
+                py: 5, 
+                backgroundColor: '#F5F7FA' 
             }}
         >
-            <Container maxWidth="lg">
-                <Grid container spacing={5}>
-                    {/* Brand column */}
+            <Box
+                sx={{
+                    width: 1280,
+                    height: 420,
+                    borderRadius: '30px',
+                    backgroundColor: primaryNavy,
+                    opacity: 1,
+                    position: 'relative',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    p: '60px 80px 30px 80px',
+                    backgroundImage: `
+                        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '40px 40px',
+                }}
+            >
+                <Grid container spacing={4}>
+                    {/* Brand Section - DIPERBAIKI */}
                     <Grid size={{ xs: 12, md: 4 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.2, mb: 2.5 }}>
-                            <Box
-                                sx={{
-                                    width: 36,
-                                    height: 36,
-                                    borderRadius: '50%',
-                                    background: 'linear-gradient(135deg, #2D3DBA, #1A1F6B)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                <Typography sx={{ color: '#fff', fontWeight: 900, fontSize: '0.85rem' }}>
-                                    N
+                        <Box sx={{ mb: 3 }}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+                                <Typography variant="h6" sx={{ color: '#fff', fontWeight: 700, letterSpacing: 1 }}>
+                                    NIZOM SYSTEM
                                 </Typography>
                             </Box>
-                            <Typography sx={{ fontWeight: 800, fontSize: '1.2rem', letterSpacing: 1 }}>
-                                Nizom
+                            <Typography sx={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', lineHeight: 1.6, maxWidth: 300 }}>
+                                PT. Nizom Berkah Informasi<br />
+                                Jl. Daud Raya No.1A, RT.2/RW.8, Sukabumi Utara,<br />
+                                Kec. Kb. Jeruk, Kota Jakarta Barat, 11540
                             </Typography>
                         </Box>
 
-                        <Typography
-                            variant="body2"
-                            sx={{ color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, mb: 3, maxWidth: 280 }}
-                        >
-                            We are a technology-driven company that specializes in delivering
-                            innovative digital solutions that help businesses grow and thrive.
-                        </Typography>
-
-                        {/* Social icons */}
-                        <Box sx={{ display: 'flex', gap: 1 }}>
-                            {[FacebookIcon, TwitterIcon, InstagramIcon, LinkedInIcon].map((Icon, i) => (
-                                <IconButton
-                                    key={i}
-                                    size="small"
-                                    sx={{
-                                        color: 'rgba(255,255,255,0.6)',
-                                        border: '1px solid rgba(255,255,255,0.15)',
-                                        width: 34,
-                                        height: 34,
-                                        '&:hover': {
-                                            color: '#fff',
-                                            background: 'rgba(255,255,255,0.1)',
-                                            borderColor: 'rgba(255,255,255,0.3)',
-                                        },
-                                    }}
+                        <Box sx={{ display: 'flex', gap: 2, mt: 4 }}>
+                            {[InstagramIcon, LinkedInIcon, XIcon].map((Icon, index) => (
+                                <IconButton 
+                                    key={index}
+                                    sx={{ color: '#fff', p: 0, '&:hover': { opacity: 0.7 } }}
                                 >
-                                    <Icon sx={{ fontSize: 16 }} />
+                                    <Icon sx={{ fontSize: 24 }} />
                                 </IconButton>
                             ))}
                         </Box>
                     </Grid>
 
-                    {/* Link columns */}
-                    {Object.entries(links).map(([category, items]) => (
+                    {/* Navigation Links - DIPERBAIKI */}
+                    {Object.entries(footerLinks).map(([category, items]) => (
                         <Grid size={{ xs: 6, sm: 4, md: 2 }} key={category}>
                             <Typography
                                 sx={{
-                                    fontWeight: 700,
-                                    fontSize: '0.85rem',
                                     color: '#fff',
-                                    mb: 2.5,
-                                    letterSpacing: 0.5,
+                                    fontWeight: 600,
+                                    fontSize: '0.9rem',
+                                    mb: 3,
+                                    letterSpacing: 1
                                 }}
                             >
                                 {category}
                             </Typography>
-                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.2 }}>
+                            <Box component="ul" sx={{ p: 0, m: 0, listStyle: 'none' }}>
                                 {items.map((item) => (
-                                    <Typography
-                                        key={item}
-                                        component="a"
-                                        href="#"
-                                        sx={{
-                                            color: 'rgba(255,255,255,0.5)',
-                                            fontSize: '0.82rem',
-                                            textDecoration: 'none',
-                                            transition: 'color 0.2s',
-                                            '&:hover': { color: '#fff' },
-                                        }}
-                                    >
-                                        {item}
-                                    </Typography>
+                                    <Box component="li" key={item} sx={{ mb: 1.5 }}>
+                                        <Typography
+                                            component="a"
+                                            href="#"
+                                            sx={{
+                                                color: 'rgba(255,255,255,0.6)',
+                                                fontSize: '0.85rem',
+                                                textDecoration: 'none',
+                                                transition: '0.3s',
+                                                '&:hover': { color: '#fff' }
+                                            }}
+                                        >
+                                            {item}
+                                        </Typography>
+                                    </Box>
                                 ))}
                             </Box>
                         </Grid>
                     ))}
 
-                    {/* Contact column */}
-                    <Grid size={{ xs: 12, sm: 12, md: 2 }}>
-                        <Typography
-                            sx={{
-                                fontWeight: 700,
-                                fontSize: '0.85rem',
-                                color: '#fff',
-                                mb: 2.5,
-                                letterSpacing: 0.5,
-                            }}
-                        >
-                            Contact
+                    {/* Contact Us Section - DIPERBAIKI */}
+                    <Grid size={{ xs: 12, md: 2 }}>
+                        <Typography sx={{ color: '#fff', fontWeight: 600, fontSize: '0.9rem', mb: 3, letterSpacing: 1 }}>
+                            CONTACT US
                         </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                            {[
-                                { label: 'Email', value: 'hello@nizom.io' },
-                                { label: 'Phone', value: '+62 812 3456 7890' },
-                                { label: 'Address', value: 'Jakarta, Indonesia' },
-                            ].map(({ label, value }) => (
-                                <Box key={label}>
-                                    <Typography sx={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.7rem', mb: 0.2 }}>
-                                        {label}
-                                    </Typography>
-                                    <Typography sx={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.82rem' }}>
-                                        {value}
-                                    </Typography>
-                                </Box>
-                            ))}
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                            <Typography sx={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem' }}>
+                                nizomberkah@gmail.com
+                            </Typography>
+                            <Typography sx={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem' }}>
+                                0812-9157-0314
+                            </Typography>
                         </Box>
                     </Grid>
                 </Grid>
 
-                <Divider sx={{ borderColor: 'rgba(255,255,255,0.08)', mt: 7, mb: 3 }} />
-
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: { xs: 'column', sm: 'row' },
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        gap: 1,
-                    }}
-                >
-                    <Typography sx={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.78rem' }}>
-                        © 2026 Nizom. All rights reserved.
-                    </Typography>
-                    <Typography sx={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.78rem' }}>
-                        Privacy Policy · Terms of Service
+                {/* Copyright Section */}
+                <Box sx={{ width: '100%' }}>
+                    <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)', mb: 3 }} />
+                    <Typography align="center" sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem' }}>
+                        Copyright © 2024 Nizom system. All rights reserved.
                     </Typography>
                 </Box>
-            </Container>
+            </Box>
         </Box>
     );
 }

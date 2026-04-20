@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, IconButton } from '@mui/material';
 import CallMadeIcon from '@mui/icons-material/CallMade';
 
 interface AboutStatCardProps {
@@ -13,79 +13,87 @@ interface AboutStatCardProps {
 const AboutStatCard: React.FC<AboutStatCardProps> = ({ 
   value, 
   description,
-  notchPosition = 'top-right'
+  notchPosition = 'top-right' 
 }) => {
   const isTop = notchPosition === 'top-right';
 
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        width: '100%',
-        minHeight: '280px',
+    // ⚠️ UKURAN FIX DARI FIGMA: Width 305px, Height 305px
+    <Box 
+      sx={{ 
+        position: 'relative', 
+        width: 305, 
+        height: 305, 
+        // Note: top & left dari Figma (1329px & 80px) sebaiknya diatur di parent container (Grid/Flex)
+        // margin: '0 auto' dihapus agar bisa disejajarkan oleh parent.
       }}
     >
-      {/* Floating Button */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: isTop ? '-16px' : 'auto',
-          bottom: isTop ? 'auto' : '-16px',
-          right: '-16px',
-          width: '64px',
-          height: '64px',
-          backgroundColor: '#407BFF',
-          borderRadius: '50%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          zIndex: 2,
-          boxShadow: '0 4px 20px rgba(64, 123, 255, 0.3)',
-        }}
-      >
-        <CallMadeIcon sx={{ color: 'white', fontSize: '28px' }} />
-      </Box>
+      
+      {/* SVG Hidden Definition untuk ClipPath */}
+      <svg width="0" height="0" style={{ position: 'absolute' }}>
+        <defs>
+          <clipPath id={isTop ? "notchTopFigma" : "notchBottomFigma"} clipPathUnits="objectBoundingBox">
+            {/* Matematika SVG untuk 305x305:
+              - Radius 35px = 35/305 = 0.115
+              - Cekungan pas untuk bola ~60px
+            */}
+            <path d={isTop 
+              ? "M0,0.115 Q0,0 0.115,0 L0.6,0 Q0.72,0 0.72,0.11 L0.72,0.13 Q0.72,0.26 0.85,0.26 L0.885,0.26 Q1,0.26 1,0.375 L1,0.885 Q1,1 0.885,1 L0.115,1 Q0,1 0,0.885 Z"
+              : "M0,0.115 Q0,0 0.115,0 L0.885,0 Q1,0 1,0.115 L1,0.625 Q1,0.74 0.885,0.74 L0.85,0.74 Q0.72,0.74 0.72,0.87 L0.72,0.89 Q0.72,1 0.6,1 L0.115,1 Q0,1 0,0.885 Z"
+            } />
+          </clipPath>
+        </defs>
+      </svg>
 
-      {/* Card Content */}
+      {/* Main Card */}
       <Box
         sx={{
-          backgroundColor: '#0d1b4b',
-          borderRadius: '32px',
-          padding: '40px 24px',
+          width: '100%',
           height: '100%',
+          backgroundColor: '#1A3574', // Menggunakan Hex dari screenshot Figma (#1A3574)
+          clipPath: `url(#${isTop ? "notchTopFigma" : "notchBottomFigma"})`,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
+          padding: '35px', // Padding disesuaikan dengan area 305px
+          boxSizing: 'border-box',
           color: 'white',
-          // Dynamic circular cut-out effect
-          maskImage: `radial-gradient(circle 64px at 100% ${isTop ? '0' : '100%'}, transparent 64px, black 65px)`,
-          WebkitMaskImage: `radial-gradient(circle 64px at 100% ${isTop ? '0' : '100%'}, transparent 64px, black 65px)`,
         }}
       >
-        <Typography
-          variant="h2"
-          sx={{
-            fontWeight: 700,
-            fontSize: { xs: '3rem', md: '3.5rem' },
-            mb: 1,
-            lineHeight: 1.2,
-          }}
-        >
+        <Typography variant="h2" sx={{ fontWeight: 800, fontSize: '3rem', mb: 1 }}>
           {value}
         </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: '1rem',
-            opacity: 0.9,
-            lineHeight: 1.6,
-            maxWidth: '220px',
-          }}
-        >
+        <Typography variant="body1" sx={{ opacity: 0.85, lineHeight: 1.6, fontSize: '0.95rem', maxWidth: '85%' }}>
           {description}
         </Typography>
+      </Box>
+
+      {/* Floating Button - Posisi disesuaikan dengan lekukan baru */}
+      <Box
+        sx={{
+          position: 'absolute',
+          // Menggunakan pixel absolut untuk memposisikan bola presisi di tengah lekukan
+          [isTop ? 'top' : 'bottom']: '12px',
+          right: '12px',
+          zIndex: 10,
+        }}
+      >
+        <IconButton
+          sx={{
+            width: 58, // Sedikit dibesarkan menyesuaikan skala 305px
+            height: 58,
+            backgroundColor: '#407BFF',
+            color: 'white',
+            boxShadow: '0 8px 16px rgba(0,0,0,0.2)',
+            transition: 'all 0.2s ease-in-out',
+            '&:hover': { 
+              backgroundColor: '#3366FF',
+              transform: 'scale(1.08)' 
+            }
+          }}
+        >
+          <CallMadeIcon sx={{ fontSize: '1.5rem' }} />
+        </IconButton>
       </Box>
     </Box>
   );

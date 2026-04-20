@@ -8,7 +8,7 @@ const services = [
         title: 'APP DEVELOPMENT',
         description:
             'We build powerful, scalable mobile and web applications tailored to your business needs, using the latest technologies and best practices.',
-        color: '#1A1F6B',
+        color: '#1A3574', // Updated with Figma hex code #1A3574
         image: '/image copy.png',
     },
     {
@@ -35,7 +35,7 @@ const services = [
 ];
 
 const thumbColors = [
-    'linear-gradient(135deg, #1A1F6B, #2D3DBA)',
+    'linear-gradient(135deg, #1A3574, #2D3DBA)', // Updated with Figma hex code #1A3574
     'linear-gradient(135deg, #2a2a2a, #555)',
     'linear-gradient(135deg, #1a4a2a, #2a8a4a)',
     'linear-gradient(135deg, #0d0d2b, #1a1f6b)',
@@ -103,18 +103,22 @@ export default function CoreFocusSection() {
                                 {/* Thumbnail */}
                                 <Box
                                     sx={{
-                                        width: { xs: 160, sm: 220 }, // Increased width for horizontal look
-                                        height: { xs: 100, sm: 120 }, // Kept height similar
-                                        borderRadius: '16px',
+                                        // Fixed width, height, and border-radius from Figma spec
+                                        width: '231px',
+                                        height: '100px',
+                                        borderRadius: '80px',
+                                        // Background logic to use image if present, or fallback gradient
                                         background: (s as any).image 
                                             ? `url("${(s as any).image}") center/cover no-repeat` 
                                             : thumbColors[i],
                                         flexShrink: 0,
                                         position: 'relative',
                                         overflow: 'hidden',
+                                        // Keeping the existing box shadow as it adds to the style
                                         boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
                                     }}
                                 >
+                                    {/* Nested Box for internal light effect */}
                                     <Box
                                         sx={{
                                             position: 'absolute',

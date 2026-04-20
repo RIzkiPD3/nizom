@@ -1,105 +1,155 @@
 'use client';
 
 import React from 'react';
-import { Box, Button, Container, Typography, Switch } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Box, Typography, Container } from '@mui/material';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 export default function CTASection() {
+    // Background halaman, harus sama dengan warna masking cutout di bawah
+    const pageBgColor = '#F5F7FA'; 
+    const primaryNavy = '#0F163D'; // Warna biru gelap utama
+
     return (
-        <Box sx={{ py: { xs: 6, md: 8 }, background: '#f7f8fc' }}>
-            <Container maxWidth="lg">
+        <Box sx={{ py: 10, background: pageBgColor, display: 'flex', justifyContent: 'center' }}>
+            <Container maxWidth={false} sx={{ display: 'flex', justifyContent: 'center' }}>
+                
+                {/* === MAIN CONTAINER (Do You Have Ideas) === */}
                 <Box
                     sx={{
-                        borderRadius: '28px',
-                        background: 'linear-gradient(135deg, #0D0D2B 0%, #1A1F6B 60%, #12123a 100%)',
-                        px: { xs: 3, sm: 5, md: 7 },
-                        py: { xs: 5, md: 6 },
-                        display: 'flex',
-                        flexDirection: { xs: 'column', sm: 'row' },
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: 4,
+                        width: 1280,
+                        height: 280,
+                        borderRadius: '30px',
+                        backgroundColor: primaryNavy,
                         position: 'relative',
-                        overflow: 'hidden',
-                        boxShadow: '0 16px 60px rgba(13,13,43,0.35)',
+                        backgroundImage: `
+                            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
+                        `,
+                        backgroundSize: '40px 40px',
+                        backgroundPosition: 'left center',
                     }}
                 >
-                    {/* Background glow */}
+                    {/* Teks Kiri */}
+                    <Box sx={{ position: 'absolute', top: 80, left: 80, zIndex: 2 }}>
+                        <Typography
+                            variant="h2"
+                            sx={{
+                                color: '#ffffff',
+                                fontWeight: 800,
+                                fontSize: { xs: '3rem', md: '4rem' },
+                                letterSpacing: '1px',
+                                mb: 1,
+                            }}
+                        >
+                            Do You Have Ideas ?
+                        </Typography>
+                        <Typography
+                            sx={{
+                                color: 'rgba(255, 255, 255, 0.6)',
+                                fontSize: '1rem',
+                                letterSpacing: '2px',
+                                textTransform: 'lowercase',
+                            }}
+                        >
+                            tell us about your ideas
+                        </Typography>
+                    </Box>
+
+                    {/* === CUTOUT MASK === */}
                     <Box
                         sx={{
                             position: 'absolute',
-                            top: '-30%',
-                            right: '10%',
-                            width: 300,
-                            height: 300,
-                            borderRadius: '50%',
-                            background: 'radial-gradient(circle, rgba(45,61,186,0.4) 0%, transparent 70%)',
-                            filter: 'blur(50px)',
-                            pointerEvents: 'none',
+                            bottom: -1,
+                            right: -1,
+                            width: 442, 
+                            height: 160, 
+                            backgroundColor: pageBgColor,
+                            borderTopLeftRadius: '50px',
+                            zIndex: 1,
+                            '&::before': {
+                                content: '""',
+                                position: 'absolute',
+                                top: -50,
+                                right: 0,
+                                width: 50,
+                                height: 50,
+                                backgroundColor: 'transparent',
+                                borderBottomRightRadius: '50px',
+                                boxShadow: `25px 25px 0 25px ${pageBgColor}`,
+                            },
+                            '&::after': {
+                                content: '""',
+                                position: 'absolute',
+                                bottom: 0,
+                                left: -50,
+                                width: 50,
+                                height: 50,
+                                backgroundColor: 'transparent',
+                                borderBottomRightRadius: '50px',
+                                boxShadow: `25px 25px 0 25px ${pageBgColor}`,
+                            }
                         }}
                     />
 
-                    {/* Text block */}
-                    <Box sx={{ position: 'relative', zIndex: 1 }}>
-                        <Typography
-                            variant="h3"
-                            sx={{ color: '#fff', fontWeight: 800, mb: 1, fontSize: { xs: '1.6rem', md: '2rem' } }}
-                        >
-                            Do You Have Ideas?
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            sx={{ color: 'rgba(255,255,255,0.6)', maxWidth: 400, lineHeight: 1.7 }}
-                        >
-                            Let's turn your vision into a reality. Our team is ready to collaborate
-                            and bring your most ambitious ideas to life.
-                        </Typography>
-                    </Box>
-
-                    {/* CTA button group */}
+                    {/* === GET STARTED BUTTON (Sesuai Layout Figma) === */}
                     <Box
                         sx={{
-                            position: 'relative',
-                            zIndex: 1,
+                            position: 'absolute',
+                            bottom: 0,
+                            right: 0,
+                            // Dimensi Figma
+                            width: 412,
+                            height: 130,
+                            borderRadius: '100px',
+                            backgroundColor: primaryNavy,
+                            opacity: 1,
                             display: 'flex',
                             alignItems: 'center',
-                            gap: 2,
-                            background: 'rgba(255,255,255,0.08)',
-                            borderRadius: 50,
-                            border: '1px solid rgba(255,255,255,0.15)',
-                            px: 1,
-                            py: 0.5,
-                            flexShrink: 0,
+                            justifyContent: 'center',
+                            // Padding Figma
+                            pt: '20px',
+                            pr: '30px',
+                            pb: '20px',
+                            pl: '30px',
+                            // Jarak antar elemen (Teks & Ikon)
+                            gap: '35px', 
+                            zIndex: 2,
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                                transform: 'scale(0.98)',
+                                boxShadow: '0 10px 30px rgba(15, 22, 61, 0.4)'
+                            }
                         }}
                     >
-                        <Button
-                            variant="contained"
-                            endIcon={<ArrowForwardIcon />}
+                        <Typography
                             sx={{
-                                background: '#fff',
-                                color: '#1A1F6B',
-                                px: 3,
-                                py: 1.2,
-                                borderRadius: 50,
-                                fontWeight: 700,
-                                fontSize: '0.9rem',
-                                boxShadow: 'none',
-                                '&:hover': {
-                                    background: '#f0f2ff',
-                                    boxShadow: '0 4px 16px rgba(26,31,107,0.2)',
-                                },
+                                color: '#ffffff',
+                                fontSize: '2.2rem',
+                                fontWeight: 600,
+                                lineHeight: 1,
                             }}
                         >
                             Get Started
-                        </Button>
-                        <Switch
-                            defaultChecked
+                        </Typography>
+
+                        {/* Ikon Lingkaran Putih */}
+                        <Box
                             sx={{
-                                '& .MuiSwitch-thumb': { background: '#2D3DBA' },
-                                '& .MuiSwitch-track': { background: 'rgba(255,255,255,0.2)' },
+                                width: 64, // Disesuaikan agar proporsional dengan height 130
+                                height: 64,
+                                borderRadius: '50%',
+                                backgroundColor: '#ffffff',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexShrink: 0, 
                             }}
-                        />
+                        >
+                            <ArrowOutwardIcon sx={{ color: '#2b52d9', fontSize: 32 }} />
+                        </Box>
                     </Box>
+
                 </Box>
             </Container>
         </Box>

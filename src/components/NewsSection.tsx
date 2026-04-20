@@ -1,183 +1,177 @@
 'use client';
 
 import React from 'react';
-import { Box, Button, Card, CardContent, Container, Grid, Typography } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CallMadeIcon from '@mui/icons-material/CallMade';
 
 const news = [
     {
         title: 'How AI is Reshaping the Future of Software Development',
-        desc: 'Artificial intelligence is no longer just a buzzword — it is actively changing how developers write, test, and deploy code across industries.',
-        date: 'Mar 18, 2026',
+        desc: 'Artificial intelligence is no longer just a buzzword — it is actively changing how developers write, test, and deploy code.',
         category: 'Technology',
-        image: '/c83685c5519fee0316fe981bd3c13af91cd54739.jpg',
+        image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=2070&auto=format&fit=crop',
     },
     {
         title: 'The Rise of Low-Code Platforms in Enterprise Solutions',
         desc: 'Enterprise organizations are increasingly adopting low-code platforms to accelerate digital transformation and reduce technical debt.',
-        date: 'Mar 12, 2026',
         category: 'Business',
-        image: '/c83685c5519fee0316fe981bd3c13af91cd54739.jpg',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop',
     },
     {
         title: 'UX Trends That Will Dominate Design in 2026',
         desc: 'From immersive 3D interfaces to hyper-personalized experiences, these design trends are setting the tone for the year ahead.',
-        date: 'Mar 5, 2026',
         category: 'Design',
-        image: '/c83685c5519fee0316fe981bd3c13af91cd54739.jpg',
+        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop',
     },
 ];
 
 export default function NewsSection() {
     return (
-        <Box sx={{ py: { xs: 7, md: 10 }, background: '#f7f8fc' }}>
+        <Box component="section" sx={{ py: 10, background: '#f7f8fc' }}>
+            {/* SVG ClipPath diperbarui:
+                Dikalkulasi secara presisi untuk rasio gambar 353.32 x 237.4 
+                dengan area cutout yang pas membungkus button 56.84px 
+            */}
+            <svg width="0" height="0" style={{ position: 'absolute' }}>
+                <defs>
+                    <clipPath id="newsNotchPath" clipPathUnits="objectBoundingBox">
+                        <path d="M 0.063,0 L 0.78,0 Q 0.82,0 0.82,0.08 L 0.82,0.18 Q 0.82,0.28 0.92,0.28 L 0.96,0.28 Q 1,0.28 1,0.36 L 1,0.907 Q 1,1 0.937,1 L 0.063,1 Q 0,1 0,0.907 L 0,0.093 Q 0,0 0.063,0 Z" />
+                    </clipPath>
+                </defs>
+            </svg>
+
             <Container maxWidth="lg">
-                {/* Header */}
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: { xs: 'column', sm: 'row' },
-                        alignItems: { xs: 'flex-start', sm: 'center' },
-                        justifyContent: 'space-between',
-                        gap: 2,
-                        mb: 6,
-                    }}
-                >
-                    <Typography
-                        variant="h2"
-                        sx={{
-                            fontWeight: 800,
-                            color: '#0D0D2B',
-                            fontSize: { xs: '1.7rem', md: '2rem' },
-                            maxWidth: 360,
-                            lineHeight: 1.3,
-                        }}
-                    >
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 6 }}>
+                    <Typography variant="h4" sx={{ fontWeight: 800, color: '#0D0D2B', maxWidth: 400 }}>
                         Stay Updated With Our Latest News
                     </Typography>
-
                     <Button
                         variant="contained"
                         endIcon={<ArrowForwardIcon />}
                         sx={{
-                            background: 'linear-gradient(90deg, #FF6B35, #FF8C42)',
-                            color: '#fff',
-                            px: 3,
-                            py: 1.2,
+                            background: '#407BFF',
                             borderRadius: 50,
+                            px: 4, py: 1.5,
+                            textTransform: 'none',
                             fontWeight: 600,
-                            alignSelf: { xs: 'flex-start', sm: 'center' },
-                            boxShadow: '0 4px 20px rgba(255,107,53,0.4)',
-                            '&:hover': {
-                                background: 'linear-gradient(90deg, #e05a28, #e07a30)',
-                                boxShadow: '0 6px 28px rgba(255,107,53,0.55)',
-                            },
+                            boxShadow: 'none',
+                            '&:hover': { background: '#3062D4', boxShadow: 'none' }
                         }}
                     >
                         See All
                     </Button>
                 </Box>
 
-                {/* News cards */}
-                <Grid container spacing={3}>
+                <Box sx={{ display: 'flex', gap: '32px', overflowX: { xs: 'auto', md: 'visible' }, pb: 2 }}>
                     {news.map((item, i) => (
-                        <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}>
-                            <Card
-                                sx={{
-                                    borderRadius: '20px',
-                                    overflow: 'hidden',
-                                    height: '100%',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-                                    boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
-                                    '&:hover': {
-                                        transform: 'translateY(-5px)',
-                                        boxShadow: '0 12px 40px rgba(0,0,0,0.12)',
-                                    },
-                                }}
-                            >
-                                {/* Image placeholder */}
-                                <Box
-                                    sx={{
-                                        height: 180,
-                                        background: `url("${item.image}") center/cover no-repeat`,
-                                        position: 'relative',
-                                        overflow: 'hidden',
+                        <Box
+                            key={i}
+                            sx={{
+                                flex: '0 0 auto',
+                                width: '411.27px',
+                                height: '467px',
+                                borderRadius: '24px',
+                                backgroundColor: '#FFFFFF',
+                                border: '1.11px solid #E5E7EB',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                p: '29px',
+                                boxSizing: 'border-box',
+                            }}
+                        >
+                            {/* Area Teks - Menggunakan dimensi fix dari Figma */}
+                            <Box sx={{ mb: 'auto' }}>
+                                <Typography 
+                                    sx={{ 
+                                        fontSize: '22px', 
+                                        fontWeight: 600, 
+                                        color: '#0D0D2B', 
+                                        width: '279px', 
+                                        height: '66px', 
+                                        lineHeight: 1.3,
+                                        mb: '12px',
+                                        // Mencegah teks lebih dari 2 baris (opsional)
+                                        display: '-webkit-box', 
+                                        WebkitLineClamp: 2, 
+                                        WebkitBoxOrient: 'vertical', 
+                                        overflow: 'hidden'
                                     }}
                                 >
-                                    {/* Category badge */}
-                                    <Box
-                                        sx={{
-                                            position: 'absolute',
-                                            top: 12,
-                                            left: 12,
-                                            background: 'rgba(255,255,255,0.15)',
-                                            backdropFilter: 'blur(6px)',
-                                            borderRadius: 50,
-                                            px: 1.5,
-                                            py: 0.3,
-                                            border: '1px solid rgba(255,255,255,0.2)',
-                                        }}
-                                    >
-                                        <Typography
-                                            sx={{ color: '#fff', fontSize: '0.68rem', fontWeight: 600 }}
-                                        >
-                                            {item.category}
-                                        </Typography>
-                                    </Box>
+                                    {item.title}
+                                </Typography>
+                                
+                                <Typography 
+                                    sx={{ 
+                                        fontSize: '14px', 
+                                        color: '#6B7280', 
+                                        width: '353.32px', 
+                                        height: '69px', 
+                                        lineHeight: 1.6,
+                                        display: '-webkit-box', 
+                                        WebkitLineClamp: 3, 
+                                        WebkitBoxOrient: 'vertical', 
+                                        overflow: 'hidden'
+                                    }}
+                                >
+                                    {item.desc}
+                                </Typography>
+                            </Box>
+
+                            {/* Area Gambar Utama */}
+                            <Box sx={{ position: 'relative', width: '353.32px', height: '237.4px' }}>
+                                <Box
+                                    sx={{
+                                        width: '100%',
+                                        height: '100%',
+                                        backgroundImage: `url(${item.image})`,
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                        clipPath: 'url(#newsNotchPath)',
+                                    }}
+                                />
+                                
+                                {/* Tombol Panah (Disesuaikan Posisinya di Dalam Container Gambar) */}
+                                <Box 
+                                    sx={{ 
+                                        position: 'absolute', 
+                                        top: 0, 
+                                        right: 0, 
+                                        width: '56.84px',
+                                        height: '56.84px',
+                                        backgroundColor: '#FFFFFF', 
+                                        borderRadius: '50%', 
+                                        display: 'flex', 
+                                        alignItems: 'center', 
+                                        justifyContent: 'center',
+                                        border: '1px solid #E5E7EB',
+                                        zIndex: 10 
+                                    }}
+                                >
+                                    <CallMadeIcon sx={{ color: '#407BFF', fontSize: '20px' }} />
                                 </Box>
 
-                                {/* Content */}
-                                <CardContent sx={{ p: 3, flex: 1, display: 'flex', flexDirection: 'column' }}>
-                                    <Typography
-                                        sx={{
-                                            fontSize: '0.72rem',
-                                            color: '#FF6B35',
-                                            fontWeight: 600,
-                                            mb: 1,
-                                            letterSpacing: 0.5,
-                                        }}
-                                    >
-                                        {item.date}
+                                {/* Badge Kategori */}
+                                <Box 
+                                    sx={{ 
+                                        position: 'absolute', 
+                                        bottom: '16px', 
+                                        left: '16px', 
+                                        bgcolor: 'rgba(0,0,0,0.6)', 
+                                        backdropFilter: 'blur(8px)', 
+                                        borderRadius: '50px', 
+                                        px: 2.5, 
+                                        py: 0.8, 
+                                    }}
+                                >
+                                    <Typography sx={{ color: '#FFF', fontSize: '13px', fontWeight: 500 }}>
+                                        {item.category}
                                     </Typography>
-                                    <Typography
-                                        variant="h5"
-                                        sx={{
-                                            color: '#0D0D2B',
-                                            fontWeight: 700,
-                                            fontSize: '0.98rem',
-                                            lineHeight: 1.5,
-                                            mb: 1.5,
-                                        }}
-                                    >
-                                        {item.title}
-                                    </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        sx={{ color: '#6B7280', lineHeight: 1.65, flex: 1, mb: 2 }}
-                                    >
-                                        {item.desc}
-                                    </Typography>
-                                    <Button
-                                        size="small"
-                                        endIcon={<ArrowForwardIcon sx={{ fontSize: 14 }} />}
-                                        sx={{
-                                            color: '#1A1F6B',
-                                            fontWeight: 600,
-                                            fontSize: '0.78rem',
-                                            p: 0,
-                                            justifyContent: 'flex-start',
-                                            '&:hover': { background: 'transparent', color: '#2D3DBA' },
-                                        }}
-                                    >
-                                        Read more
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                        </Grid>
+                                </Box>
+                            </Box>
+                        </Box>
                     ))}
-                </Grid>
+                </Box>
             </Container>
         </Box>
     );
