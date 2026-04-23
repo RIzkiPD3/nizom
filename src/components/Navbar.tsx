@@ -44,7 +44,7 @@ export default function Navbar() {
                 }}
             >
                 <Container maxWidth="lg">
-                    <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
+                    <Toolbar disableGutters sx={{ justifyContent: 'space-between', position: 'relative' }}>
                         {/* Logo */}
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                             <Box
@@ -77,6 +77,9 @@ export default function Navbar() {
                             sx={{
                                 display: { xs: 'none', md: 'flex' },
                                 alignItems: 'center',
+                                position: 'absolute',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
                                 background: 'rgba(255,255,255,0.12)',
                                 backdropFilter: 'blur(10px)',
                                 borderRadius: 50,

@@ -76,7 +76,7 @@ export default function CoreFocusSection() {
                                 }}
                             >
                                 {/* Title col */}
-                                <Box sx={{ flex: '0 0 200px', minWidth: 160 }}>
+                                <Box sx={{ flex: { xs: 'none', sm: '0 0 200px' }, minWidth: { xs: '100%', sm: 160 }, mb: { xs: 1, sm: 0 } }}>
                                     <Typography
                                         sx={{
                                             fontWeight: 800,
@@ -91,7 +91,7 @@ export default function CoreFocusSection() {
                                 </Box>
 
                                 {/* Description */}
-                                <Box sx={{ flex: 1 }}>
+                                <Box sx={{ flex: 1, width: '100%', mb: { xs: 2, sm: 0 } }}>
                                     <Typography
                                         variant="body2"
                                         sx={{ color: '#6B7280', lineHeight: 1.75, maxWidth: 520 }}
@@ -104,8 +104,8 @@ export default function CoreFocusSection() {
                                 <Box
                                     sx={{
                                         // Fixed width, height, and border-radius from Figma spec
-                                        width: '231px',
-                                        height: '100px',
+                                        width: { xs: '100%', sm: '231px' },
+                                        height: { xs: '140px', sm: '100px' },
                                         borderRadius: '80px',
                                         // Background logic to use image if present, or fallback gradient
                                         background: (s as any).image 

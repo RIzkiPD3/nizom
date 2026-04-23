@@ -52,11 +52,11 @@ export default function SpotlightSection() {
         <Box
           sx={{
             display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
+            flexDirection: { xs: 'column', lg: 'row' },
             justifyContent: 'space-between',
-            alignItems: { xs: 'flex-start', md: 'flex-end' },
-            mb: 8,
-            gap: 4,
+            alignItems: { xs: 'flex-start', lg: 'flex-end' },
+            mb: { xs: 5, md: 7 },
+            gap: { xs: 3, md: 4 },
           }}
         >
           {/* Title & Description side */}
@@ -66,8 +66,8 @@ export default function SpotlightSection() {
               sx={{
                 fontWeight: 800,
                 color: 'white',
-                fontSize: { xs: '2.5rem', md: '4rem' },
-                lineHeight: 1,
+                fontSize: { xs: '2.1rem', sm: '2.8rem', md: '3.3rem', lg: '4rem' },
+                lineHeight: { xs: 1.1, md: 1 },
                 mb: 2,
               }}
             >
@@ -79,7 +79,7 @@ export default function SpotlightSection() {
                 color: 'rgba(255,255,255,0.5)',
                 fontSize: { xs: '0.9rem', md: '1rem' },
                 maxWidth: '600px',
-                lineHeight: 1.6,
+                lineHeight: 1.7,
               }}
             >
               We excel in managing a wide range of technology development and integration projects, 
@@ -95,7 +95,8 @@ export default function SpotlightSection() {
               flexWrap: 'wrap',
               gap: 1.5,
               justifyContent: { xs: 'flex-start', md: 'flex-end' },
-              maxWidth: { md: '500px' },
+              width: { xs: '100%', lg: 'auto' },
+              maxWidth: { xs: '100%', lg: '650px' },
             }}
           >
             {categories.map((cat) => (
@@ -104,13 +105,13 @@ export default function SpotlightSection() {
                 onClick={() => setActiveTab(cat)}
                 sx={{
                   borderRadius: '100px',
-                  px: 3,
+                  px: { xs: 2, sm: 2.5, md: 3 },
                   py: 0.8,
                   textTransform: 'none',
                   border: '1px solid',
                   borderColor: activeTab === cat ? '#407BFF' : 'rgba(255,255,255,0.2)',
                   color: 'white',
-                  fontSize: '0.85rem',
+                  fontSize: { xs: '0.78rem', sm: '0.82rem', md: '0.85rem' },
                   fontWeight: 500,
                   bgcolor: activeTab === cat ? 'rgba(64, 123, 255, 0.1)' : 'transparent',
                   whiteSpace: 'nowrap',
@@ -127,12 +128,12 @@ export default function SpotlightSection() {
               endIcon={<ArrowForwardIcon />}
               sx={{
                 borderRadius: '100px',
-                px: 3,
+                px: { xs: 2, sm: 2.5, md: 3 },
                 py: 0.8,
                 textTransform: 'none',
                 bgcolor: '#407BFF',
                 color: 'white',
-                fontSize: '0.85rem',
+                fontSize: { xs: '0.78rem', sm: '0.82rem', md: '0.85rem' },
                 fontWeight: 600,
                 whiteSpace: 'nowrap',
                 '&:hover': {
@@ -145,27 +146,25 @@ export default function SpotlightSection() {
           </Box>
         </Box>
 
-        {/* ⚠️ FIX: Mengganti Grid dengan Flexbox 1 Baris agar selaras dengan dimensi baru */}
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            gap: '19.7px', // Sesuai spek Anda
-            justifyContent: 'flex-start', // Dimulai pas di 80px dari tepi kiri container
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'repeat(2, minmax(0, 1fr))',
+              md: 'repeat(3, minmax(0, 1fr))',
+              lg: 'repeat(4, minmax(0, 1fr))',
+            },
+            gap: { xs: 2, sm: 2.5, md: 2.5, lg: '19.69677734375px' },
+            alignItems: 'start',
             width: '100%',
-            overflowX: { xs: 'auto', xl: 'visible' }, // Scroll horizontal otomatis di layar kecil
-            pb: 2,
-            '&::-webkit-scrollbar': { display: 'none' }, // Sembunyikan scrollbar bawaan browser
-            msOverflowStyle: 'none',
-            scrollbarWidth: 'none',
           }}
         >
           {projects.map((proj, index) => (
             <Box 
               key={proj.id} 
               sx={{ 
-                flexShrink: 0, // Kunci agar kartu tidak mengecil
-                width: '305.3px' // Set ukuran kontainer sesuai desain
+                width: '100%',
               }}
             >
               <ProjectCard

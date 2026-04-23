@@ -21,15 +21,17 @@ export default function Footer() {
                 width: '100%', 
                 display: 'flex', 
                 justifyContent: 'center', 
-                py: 5, 
+                py: { xs: 3, md: 5 }, 
+                px: { xs: 2, md: 4 },
                 backgroundColor: '#F5F7FA' 
             }}
         >
             <Box
                 sx={{
-                    width: 1280,
-                    height: 420,
-                    borderRadius: '30px',
+                    width: '100%',
+                    maxWidth: 1280,
+                    minHeight: { xs: 'auto', md: 420 },
+                    borderRadius: { xs: '20px', md: '30px' },
                     backgroundColor: primaryNavy,
                     opacity: 1,
                     position: 'relative',
@@ -37,7 +39,7 @@ export default function Footer() {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    p: '60px 80px 30px 80px',
+                    p: { xs: '30px 20px', md: '60px 80px 30px 80px' },
                     backgroundImage: `
                         linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
                         linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)

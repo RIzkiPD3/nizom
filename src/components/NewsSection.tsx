@@ -41,7 +41,10 @@ export default function NewsSection() {
                 </defs>
             </svg>
 
-            <Container maxWidth="lg">
+            <Container
+                maxWidth={false}
+                sx={{ px: { xs: 3, md: '80px' }, maxWidth: '1440px' }}
+            >
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 6 }}>
                     <Typography variant="h4" sx={{ fontWeight: 800, color: '#0D0D2B', maxWidth: 400 }}>
                         Stay Updated With Our Latest News
@@ -63,20 +66,36 @@ export default function NewsSection() {
                     </Button>
                 </Box>
 
-                <Box sx={{ display: 'flex', gap: '32px', overflowX: { xs: 'auto', md: 'visible' }, pb: 2 }}>
+                <Box 
+                    sx={{ 
+                        display: 'flex', 
+                        gap: { xs: '20px', md: '22.2911376953125px' }, 
+                        overflowX: 'auto', 
+                        pb: 2,
+                        width: { xs: '100%', md: '1278.3985595703125px' },
+                        maxWidth: '100%',
+                        minHeight: { md: '467px' },
+                        alignItems: 'stretch',
+                        '&::-webkit-scrollbar': { display: 'none' }, // Sembunyikan scrollbar bawaan browser
+                        msOverflowStyle: 'none',
+                        scrollbarWidth: 'none',
+                    }}
+                >
                     {news.map((item, i) => (
                         <Box
                             key={i}
                             sx={{
                                 flex: '0 0 auto',
-                                width: '411.27px',
-                                height: '467px',
-                                borderRadius: '24px',
+                                width: { xs: '85vw', sm: '400px', md: '411.2720947265625px' },
+                                maxWidth: '100%',
+                                height: { xs: 'auto', md: '467px' },
+                                minHeight: { xs: 'auto', md: '467px' },
+                                borderRadius: '22.29px',
                                 backgroundColor: '#FFFFFF',
                                 border: '1.11px solid #E5E7EB',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                p: '29px',
+                                p: { xs: '20px', md: '29px' },
                                 boxSizing: 'border-box',
                             }}
                         >
@@ -84,11 +103,11 @@ export default function NewsSection() {
                             <Box sx={{ mb: 'auto' }}>
                                 <Typography 
                                     sx={{ 
-                                        fontSize: '22px', 
+                                        fontSize: { xs: '18px', md: '22px' }, 
                                         fontWeight: 600, 
                                         color: '#0D0D2B', 
-                                        width: '279px', 
-                                        height: '66px', 
+                                        width: '100%', 
+                                        maxWidth: '279px',
                                         lineHeight: 1.3,
                                         mb: '12px',
                                         // Mencegah teks lebih dari 2 baris (opsional)
@@ -105,9 +124,9 @@ export default function NewsSection() {
                                     sx={{ 
                                         fontSize: '14px', 
                                         color: '#6B7280', 
-                                        width: '353.32px', 
-                                        height: '69px', 
+                                        width: '100%', 
                                         lineHeight: 1.6,
+                                        mb: 3,
                                         display: '-webkit-box', 
                                         WebkitLineClamp: 3, 
                                         WebkitBoxOrient: 'vertical', 
@@ -119,7 +138,7 @@ export default function NewsSection() {
                             </Box>
 
                             {/* Area Gambar Utama */}
-                            <Box sx={{ position: 'relative', width: '353.32px', height: '237.4px' }}>
+                            <Box sx={{ position: 'relative', width: '100%', height: { xs: '200px', md: '237.4px' } }}>
                                 <Box
                                     sx={{
                                         width: '100%',

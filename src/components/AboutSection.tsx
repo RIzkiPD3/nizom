@@ -78,8 +78,8 @@ export default function AboutSection() {
             alignItems: 'flex-start',
             gap: '24px',
             width: '100%',
-            // Jika layar lebih kecil dari 1300px, user bisa scroll horizontal
-            overflowX: { xs: 'auto', lg: 'visible' }, 
+            // Agar selalu bisa scroll jika tidak muat, mencegah pelebaran body
+            overflowX: 'auto', 
             pb: 4, // Padding bawah agar shadow tombol tidak terpotong saat scroll
             '&::-webkit-scrollbar': { display: 'none' }, // Sembunyikan scrollbar agar bersih
             msOverflowStyle: 'none',

@@ -14,17 +14,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   notchPosition = 'top-right' 
 }) => {
   const isTop = notchPosition === 'top-right';
+  const clipPathId = `projectNotch-${isTop ? 'top' : 'bottom'}`;
 
   return (
-    // Dimensi diperbarui persis seperti spesifikasi Figma Anda
-    <Box sx={{ position: 'relative', width: 305.3, height: 359 }}>
+    <Box
+      sx={{
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        aspectRatio: '305.30328369140625 / 359',
+        minHeight: { xs: '240px', sm: '300px', lg: '359px' },
+        borderRadius: '35px',
+      }}
+    >
       
-      {/* SVG ClipPath Definition yang sudah dikalibrasi untuk 305.3 x 359 */}
       <svg width="0" height="0" style={{ position: 'absolute' }}>
         <defs>
-          <clipPath id={isTop ? "projectNotchTop" : "projectNotchBottom"} clipPathUnits="objectBoundingBox">
+          <clipPath id={clipPathId} clipPathUnits="objectBoundingBox">
             <path d={isTop 
-              // Hitungan presisi untuk border-radius 35px di height 359px (Y ≈ 0.097)
               ? "M0,0.097 Q0,0 0.115,0 L0.6,0 Q0.72,0 0.72,0.097 L0.72,0.12 Q0.72,0.236 0.85,0.236 L0.885,0.236 Q1,0.236 1,0.333 L1,0.903 Q1,1 0.885,1 L0.115,1 Q0,1 0,0.903 Z"
               : "M0,0.097 Q0,0 0.115,0 L0.885,0 Q1,0 1,0.097 L1,0.667 Q1,0.764 0.885,0.764 L0.85,0.764 Q0.72,0.764 0.72,0.88 L0.72,0.903 Q0.72,1 0.6,1 L0.115,1 Q0,1 0,0.903 Z"
             } />
@@ -38,9 +45,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           width: '100%',
           height: '100%',
           backgroundColor: '#1A3574',
-          clipPath: `url(#${isTop ? "projectNotchTop" : "projectNotchBottom"})`,
+          clipPath: `url(#${clipPathId})`,
           overflow: 'hidden',
           position: 'relative',
+          borderRadius: '35px',
         }}
       >
         <Box
@@ -67,19 +75,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         />
       </Box>
 
-      {/* Floating Button disesuaikan ukurannya agar pas di notch yang baru */}
       <Box
         sx={{
           position: 'absolute',
-          [isTop ? 'top' : 'bottom']: '8px', // Didekatkan sedikit agar proporsional
-          right: '8px',
+          [isTop ? 'top' : 'bottom']: { xs: '6px', sm: '8px' },
+          right: { xs: '6px', sm: '8px' },
           zIndex: 10,
         }}
       >
         <IconButton
           sx={{
-            width: 60,
-            height: 60,
+            width: { xs: 48, sm: 56, md: 60 },
+            height: { xs: 48, sm: 56, md: 60 },
             backgroundColor: '#407BFF',
             color: 'white',
             boxShadow: '0 8px 16px rgba(0,0,0,0.2)',
@@ -90,7 +97,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             }
           }}
         >
-          <CallMadeIcon sx={{ fontSize: '1.5rem' }} />
+          <CallMadeIcon sx={{ fontSize: { xs: '1.15rem', sm: '1.3rem', md: '1.5rem' } }} />
         </IconButton>
       </Box>
     </Box>

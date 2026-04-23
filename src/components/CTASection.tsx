@@ -16,11 +16,19 @@ export default function CTASection() {
                 {/* === MAIN CONTAINER (Do You Have Ideas) === */}
                 <Box
                     sx={{
-                        width: 1280,
-                        height: 280,
+                        width: '100%',
+                        maxWidth: 1280,
+                        height: { xs: 'auto', md: 280 },
+                        minHeight: { xs: 240, md: 280 },
                         borderRadius: '30px',
                         backgroundColor: primaryNavy,
                         position: 'relative',
+                        display: 'flex',
+                        flexDirection: { xs: 'column', md: 'row' },
+                        alignItems: { xs: 'center', md: 'flex-start' },
+                        justifyContent: { xs: 'center', md: 'flex-start' },
+                        p: { xs: 4, md: 0 },
+                        overflow: 'hidden', // to contain the button if it spans on mobile
                         backgroundImage: `
                             linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
                             linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
@@ -30,13 +38,20 @@ export default function CTASection() {
                     }}
                 >
                     {/* Teks Kiri */}
-                    <Box sx={{ position: 'absolute', top: 80, left: 80, zIndex: 2 }}>
+                    <Box sx={{ 
+                        position: { xs: 'relative', md: 'absolute' }, 
+                        top: { xs: 'auto', md: 80 }, 
+                        left: { xs: 'auto', md: 80 }, 
+                        zIndex: 2,
+                        textAlign: { xs: 'center', md: 'left' },
+                        mb: { xs: 4, md: 0 }
+                    }}>
                         <Typography
                             variant="h2"
                             sx={{
                                 color: '#ffffff',
                                 fontWeight: 800,
-                                fontSize: { xs: '3rem', md: '4rem' },
+                                fontSize: { xs: '2.5rem', md: '4rem' },
                                 letterSpacing: '1px',
                                 mb: 1,
                             }}
@@ -58,6 +73,7 @@ export default function CTASection() {
                     {/* === CUTOUT MASK === */}
                     <Box
                         sx={{
+                            display: { xs: 'none', md: 'block' },
                             position: 'absolute',
                             bottom: -1,
                             right: -1,
@@ -94,25 +110,25 @@ export default function CTASection() {
                     {/* === GET STARTED BUTTON (Sesuai Layout Figma) === */}
                     <Box
                         sx={{
-                            position: 'absolute',
-                            bottom: 0,
-                            right: 0,
-                            // Dimensi Figma
-                            width: 412,
-                            height: 130,
+                            position: { xs: 'relative', md: 'absolute' },
+                            bottom: { md: 0 },
+                            right: { md: 0 },
+                            // Dimensi Figma & Mobile
+                            width: { xs: '100%', sm: 300, md: 412 },
+                            height: { xs: 70, md: 130 },
                             borderRadius: '100px',
-                            backgroundColor: primaryNavy,
+                            backgroundColor: { xs: '#407BFF', md: primaryNavy },
                             opacity: 1,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             // Padding Figma
-                            pt: '20px',
-                            pr: '30px',
-                            pb: '20px',
-                            pl: '30px',
+                            pt: { xs: '10px', md: '20px' },
+                            pr: { xs: '20px', md: '30px' },
+                            pb: { xs: '10px', md: '20px' },
+                            pl: { xs: '20px', md: '30px' },
                             // Jarak antar elemen (Teks & Ikon)
-                            gap: '35px', 
+                            gap: { xs: '15px', md: '35px' }, 
                             zIndex: 2,
                             cursor: 'pointer',
                             transition: 'all 0.3s ease',
@@ -125,7 +141,7 @@ export default function CTASection() {
                         <Typography
                             sx={{
                                 color: '#ffffff',
-                                fontSize: '2.2rem',
+                                fontSize: { xs: '1.5rem', md: '2.2rem' },
                                 fontWeight: 600,
                                 lineHeight: 1,
                             }}
@@ -136,8 +152,8 @@ export default function CTASection() {
                         {/* Ikon Lingkaran Putih */}
                         <Box
                             sx={{
-                                width: 64, // Disesuaikan agar proporsional dengan height 130
-                                height: 64,
+                                width: { xs: 44, md: 64 },
+                                height: { xs: 44, md: 64 },
                                 borderRadius: '50%',
                                 backgroundColor: '#ffffff',
                                 display: 'flex',
@@ -146,7 +162,7 @@ export default function CTASection() {
                                 flexShrink: 0, 
                             }}
                         >
-                            <ArrowOutwardIcon sx={{ color: '#2b52d9', fontSize: 32 }} />
+                            <ArrowOutwardIcon sx={{ color: '#2b52d9', fontSize: { xs: 24, md: 32 } }} />
                         </Box>
                     </Box>
 
