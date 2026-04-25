@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Typography, Grid } from '@mui/material';
 import AboutStatCard from './AboutStatCard';
 
 const stats = [
@@ -27,7 +27,7 @@ export default function AboutSection() {
   return (
     <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: '#f5f5f5' }}>
       {/* Container dibuat sangat lebar agar menampung 4 x 305px + gaps */}
-      <Container maxWidth={false} sx={{ maxWidth: '1400px', px: 4 }}>
+      <Container maxWidth={false} sx={{ maxWidth: '1400px', px: { xs: 2, sm: 3, md: 4 } }}>
         
         {/* Header Section */}
         <Box
@@ -62,41 +62,31 @@ export default function AboutSection() {
                 lineHeight: 1.6,
               }}
             >
-              We're more than just a software house. We're the architects of innovative
-              solutions, creators of seamless digital experiences, and dedicated
-              partners in your journey towards technological excellence.
+              {`We're more than just a software house. We're the architects of innovative solutions, creators of seamless digital experiences, and dedicated partners in your journey towards technological excellence.`}
             </Typography>
           </Box>
         </Box>
 
-        {/* ⚠️ Wrapper Utama untuk 1 Baris */}
-        <Box
+        <Grid
+          container
+          spacing={{ xs: 2, sm: 2.5, md: 3 }}
           sx={{
-            display: 'flex',
-            flexDirection: 'row', // Memaksa satu baris
-            justifyContent: 'center', // Tetap di tengah
-            alignItems: 'flex-start',
-            gap: '24px',
             width: '100%',
-            // Agar selalu bisa scroll jika tidak muat, mencegah pelebaran body
-            overflowX: 'auto', 
-            pb: 4, // Padding bawah agar shadow tombol tidak terpotong saat scroll
-            '&::-webkit-scrollbar': { display: 'none' }, // Sembunyikan scrollbar agar bersih
-            msOverflowStyle: 'none',
-            scrollbarWidth: 'none',
+            pb: { xs: 2, md: 4 },
+            justifyContent: { lg: 'center' },
           }}
         >
           {stats.map((stat, index) => (
-            // Flex-shrink: 0 memastikan kartu tidak gepeng/mengecil
-            <Box key={index} sx={{ flexShrink: 0 }}>
+            <Grid key={index} size={{ xs: 12, sm: 6, lg: 3 }}>
               <AboutStatCard
+                clipIdSuffix={String(index)}
                 value={stat.value}
                 description={stat.description}
                 notchPosition={index % 2 === 0 ? 'top-right' : 'bottom-right'}
               />
-            </Box>
+            </Grid>
           ))}
-        </Box>
+        </Grid>
       </Container>
 
       {/* Marquee Banner */}

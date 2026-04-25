@@ -7,14 +7,17 @@ import CallMadeIcon from '@mui/icons-material/CallMade';
 interface ProjectCardProps {
   image: string;
   notchPosition?: 'top-right' | 'bottom-right';
+  /** Unique per card so clipPath IDs never collide in the DOM. */
+  clipIdSuffix: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ 
-  image, 
-  notchPosition = 'top-right' 
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  image,
+  notchPosition = 'top-right',
+  clipIdSuffix,
 }) => {
   const isTop = notchPosition === 'top-right';
-  const clipPathId = `projectNotch-${isTop ? 'top' : 'bottom'}`;
+  const clipPathId = `project-notch-${clipIdSuffix}`;
 
   return (
     <Box
@@ -28,7 +31,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       }}
     >
       
-      <svg width="0" height="0" style={{ position: 'absolute' }}>
+      <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden>
         <defs>
           <clipPath id={clipPathId} clipPathUnits="objectBoundingBox">
             <path d={isTop 

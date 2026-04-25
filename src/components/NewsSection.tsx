@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Box, Button, Container, Typography } from '@mui/material';
+import { useHorizontalStripScrollRef } from '../hooks/useHorizontalStripScrollRef';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CallMadeIcon from '@mui/icons-material/CallMade';
 
@@ -27,6 +28,8 @@ const news = [
 ];
 
 export default function NewsSection() {
+    const newsStripRef = useHorizontalStripScrollRef();
+
     return (
         <Box component="section" sx={{ py: 10, background: '#f7f8fc' }}>
             {/* SVG ClipPath diperbarui:
@@ -43,7 +46,7 @@ export default function NewsSection() {
 
             <Container
                 maxWidth={false}
-                sx={{ px: { xs: 3, md: '80px' }, maxWidth: '1440px' }}
+                sx={{ px: { xs: 3, md: '80px' }, maxWidth: '1440px', minWidth: 0 }}
             >
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 6 }}>
                     <Typography variant="h4" sx={{ fontWeight: 800, color: '#0D0D2B', maxWidth: 400 }}>
@@ -66,19 +69,32 @@ export default function NewsSection() {
                     </Button>
                 </Box>
 
-                <Box 
-                    sx={{ 
-                        display: 'flex', 
-                        gap: { xs: '20px', md: '22.2911376953125px' }, 
-                        overflowX: 'auto', 
+                <Box
+                    ref={newsStripRef}
+                    sx={{
+                        display: 'flex',
+                        flexWrap: 'nowrap',
+                        gap: { xs: '20px', md: '22px' },
+                        overflowX: 'auto',
+                        overflowY: 'hidden',
                         pb: 2,
-                        width: { xs: '100%', md: '1278.3985595703125px' },
+                        width: '100%',
                         maxWidth: '100%',
+                        minWidth: 0,
                         minHeight: { md: '467px' },
                         alignItems: 'stretch',
-                        '&::-webkit-scrollbar': { display: 'none' }, // Sembunyikan scrollbar bawaan browser
-                        msOverflowStyle: 'none',
-                        scrollbarWidth: 'none',
+                        WebkitOverflowScrolling: 'touch',
+                        scrollSnapType: { xs: 'x mandatory', md: 'none' },
+                        touchAction: 'pan-x',
+                        overscrollBehavior: 'contain',
+                        scrollbarGutter: 'stable',
+                        '&::-webkit-scrollbar': { height: 8 },
+                        '&::-webkit-scrollbar-thumb': {
+                            backgroundColor: 'rgba(13,13,43,0.2)',
+                            borderRadius: 4,
+                        },
+                        scrollbarColor: 'rgba(13,13,43,0.35) transparent',
+                        scrollbarWidth: 'thin',
                     }}
                 >
                     {news.map((item, i) => (
@@ -86,7 +102,8 @@ export default function NewsSection() {
                             key={i}
                             sx={{
                                 flex: '0 0 auto',
-                                width: { xs: '85vw', sm: '400px', md: '411.2720947265625px' },
+                                scrollSnapAlign: 'start',
+                                width: { xs: 'min(85vw, 420px)', sm: '380px', md: '411px' },
                                 maxWidth: '100%',
                                 height: { xs: 'auto', md: '467px' },
                                 minHeight: { xs: 'auto', md: '467px' },

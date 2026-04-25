@@ -24,9 +24,9 @@ export default function CTASection() {
                         backgroundColor: primaryNavy,
                         position: 'relative',
                         display: 'flex',
-                        flexDirection: { xs: 'column', md: 'row' },
-                        alignItems: { xs: 'center', md: 'flex-start' },
-                        justifyContent: { xs: 'center', md: 'flex-start' },
+                        flexDirection: { xs: 'column', lg: 'row' },
+                        alignItems: { xs: 'center', lg: 'flex-start' },
+                        justifyContent: { xs: 'center', lg: 'flex-start' },
                         p: { xs: 4, md: 0 },
                         overflow: 'hidden', // to contain the button if it spans on mobile
                         backgroundImage: `
@@ -39,21 +39,26 @@ export default function CTASection() {
                 >
                     {/* Teks Kiri */}
                     <Box sx={{ 
-                        position: { xs: 'relative', md: 'absolute' }, 
-                        top: { xs: 'auto', md: 80 }, 
-                        left: { xs: 'auto', md: 80 }, 
+                        position: { xs: 'relative', lg: 'absolute' }, 
+                        top: { xs: 'auto', lg: 80 }, 
+                        left: { xs: 'auto', lg: 80 }, 
                         zIndex: 2,
-                        textAlign: { xs: 'center', md: 'left' },
-                        mb: { xs: 4, md: 0 }
+                        textAlign: { xs: 'center', lg: 'left' },
+                        mb: { xs: 4, lg: 0 },
+                        maxWidth: { xs: '100%', md: 720 },
                     }}>
                         <Typography
                             variant="h2"
                             sx={{
                                 color: '#ffffff',
                                 fontWeight: 800,
-                                fontSize: { xs: '2.5rem', md: '4rem' },
-                                letterSpacing: '1px',
+                                // dibuat lebih konservatif supaya aman saat zoom 125%+
+                                fontSize: { xs: '2rem', sm: '2.35rem', md: '3.05rem', lg: '3.4rem' },
+                                lineHeight: 1.03,
+                                letterSpacing: { xs: 0, md: 0 },
                                 mb: 1,
+                                overflowWrap: 'anywhere',
+                                maxWidth: { xs: '100%', md: 650 },
                             }}
                         >
                             Do You Have Ideas ?
@@ -61,8 +66,8 @@ export default function CTASection() {
                         <Typography
                             sx={{
                                 color: 'rgba(255, 255, 255, 0.6)',
-                                fontSize: '1rem',
-                                letterSpacing: '2px',
+                                fontSize: { xs: '0.95rem', md: '1rem' },
+                                letterSpacing: { xs: '1px', md: '2px' },
                                 textTransform: 'lowercase',
                             }}
                         >
@@ -73,7 +78,7 @@ export default function CTASection() {
                     {/* === CUTOUT MASK === */}
                     <Box
                         sx={{
-                            display: { xs: 'none', md: 'block' },
+                            display: { xs: 'none', lg: 'block' },
                             position: 'absolute',
                             bottom: -1,
                             right: -1,
@@ -110,25 +115,25 @@ export default function CTASection() {
                     {/* === GET STARTED BUTTON (Sesuai Layout Figma) === */}
                     <Box
                         sx={{
-                            position: { xs: 'relative', md: 'absolute' },
-                            bottom: { md: 0 },
-                            right: { md: 0 },
+                            position: { xs: 'relative', lg: 'absolute' },
+                            bottom: { lg: 0 },
+                            right: { lg: 0 },
                             // Dimensi Figma & Mobile
-                            width: { xs: '100%', sm: 300, md: 412 },
-                            height: { xs: 70, md: 130 },
+                            width: { xs: '100%', sm: 300, lg: 412 },
+                            height: { xs: 70, lg: 130 },
                             borderRadius: '100px',
-                            backgroundColor: { xs: '#407BFF', md: primaryNavy },
+                            backgroundColor: { xs: '#407BFF', lg: primaryNavy },
                             opacity: 1,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             // Padding Figma
-                            pt: { xs: '10px', md: '20px' },
-                            pr: { xs: '20px', md: '30px' },
-                            pb: { xs: '10px', md: '20px' },
-                            pl: { xs: '20px', md: '30px' },
-                            // Jarak antar elemen (Teks & Ikon)
-                            gap: { xs: '15px', md: '35px' }, 
+                            pt: { xs: '10px', lg: '20px' },
+                            pr: { xs: '20px', lg: '30px' },
+                            pb: { xs: '10px', lg: '20px' },
+                            pl: { xs: '20px', lg: '30px' },
+                            // Jarak antar elemen (Teks & Ikon) - dikecilkan sedikit agar aman saat zoom
+                            gap: { xs: '14px', lg: '24px' }, 
                             zIndex: 2,
                             cursor: 'pointer',
                             transition: 'all 0.3s ease',
@@ -141,9 +146,11 @@ export default function CTASection() {
                         <Typography
                             sx={{
                                 color: '#ffffff',
-                                fontSize: { xs: '1.5rem', md: '2.2rem' },
+                                // dibuat sedikit lebih kecil supaya tidak "mepet" saat zoom
+                                fontSize: { xs: '1.2rem', sm: '1.35rem', lg: '1.85rem' },
                                 fontWeight: 600,
                                 lineHeight: 1,
+                                whiteSpace: 'nowrap',
                             }}
                         >
                             Get Started

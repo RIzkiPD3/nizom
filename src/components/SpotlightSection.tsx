@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Container, Typography } from '@mui/material';
 import ProjectCard from './ProjectCard';
+import { useHorizontalStripScrollRef } from '../hooks/useHorizontalStripScrollRef';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const categories = [
@@ -22,6 +23,7 @@ const projects = [
 
 export default function SpotlightSection() {
   const [activeTab, setActiveTab] = useState('All categories');
+  const projectStripRef = useHorizontalStripScrollRef();
 
   return (
     <Box
@@ -46,7 +48,16 @@ export default function SpotlightSection() {
       }}
     >
       {/* px: '80px' memastikan titik "left: 80px" dari Figma tercapai */}
-      <Container maxWidth={false} sx={{ position: 'relative', zIndex: 1, px: { xs: 3, md: '80px' }, maxWidth: '1440px' }}>
+      <Container
+        maxWidth={false}
+        sx={{
+          position: 'relative',
+          zIndex: 1,
+          px: { xs: 3, md: '80px' },
+          maxWidth: '1440px',
+          minWidth: 0,
+        }}
+      >
         
         {/* Header row */}
         <Box
@@ -147,27 +158,43 @@ export default function SpotlightSection() {
         </Box>
 
         <Box
+          ref={projectStripRef}
           sx={{
-            display: 'grid',
-            gridTemplateColumns: {
-              xs: '1fr',
-              sm: 'repeat(2, minmax(0, 1fr))',
-              md: 'repeat(3, minmax(0, 1fr))',
-              lg: 'repeat(4, minmax(0, 1fr))',
-            },
-            gap: { xs: 2, sm: 2.5, md: 2.5, lg: '19.69677734375px' },
-            alignItems: 'start',
+            display: 'flex',
+            flexWrap: 'nowrap',
+            gap: { xs: 2, sm: 2.5, md: '19.7px' },
+            overflowX: 'auto',
+            overflowY: 'hidden',
             width: '100%',
+            maxWidth: '100%',
+            minWidth: 0,
+            pb: 2,
+            alignItems: 'stretch',
+            WebkitOverflowScrolling: 'touch',
+            scrollSnapType: { xs: 'x mandatory', md: 'none' },
+            touchAction: 'pan-x',
+            overscrollBehavior: 'contain',
+            scrollbarGutter: 'stable',
+            '&::-webkit-scrollbar': { height: 8 },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: 'rgba(255,255,255,0.25)',
+              borderRadius: 4,
+            },
+            scrollbarColor: 'rgba(255,255,255,0.35) transparent',
+            scrollbarWidth: 'thin',
           }}
         >
           {projects.map((proj, index) => (
-            <Box 
-              key={proj.id} 
-              sx={{ 
-                width: '100%',
+            <Box
+              key={proj.id}
+              sx={{
+                flex: '0 0 auto',
+                scrollSnapAlign: 'start',
+                width: { xs: 'min(78vw, 320px)', sm: '300px', md: '305px' },
               }}
             >
               <ProjectCard
+                clipIdSuffix={String(proj.id)}
                 image={proj.image}
                 notchPosition={index % 2 === 0 ? 'top-right' : 'bottom-right'}
               />
